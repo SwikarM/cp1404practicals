@@ -2,8 +2,8 @@
 
 ## About
 This repository contains all practical work for CP1404 Programming II.  
-**Student Name:** [Your Name]  
-**JCU Number:** [Your JCU Number]
+**Student Name:** [Swikar Mainali]  
+**JCU Number:** [JD171678]
 
 ## Clean Code Lessons Learned
 
