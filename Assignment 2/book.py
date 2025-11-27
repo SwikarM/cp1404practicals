@@ -30,3 +30,19 @@ class Book:
         self.status = "u"
 
     def is_long(self) -> bool:
+        """Return True if the book is considered long (>= 500 pages)."""
+        return self.num_pages >= 500
+
+    def to_dict(self) -> dict:
+        """Return serializable dictionary representation for JSON storage."""
+        return {
+            "title": self.title,
+            "author": self.author,
+            "pages": self.num_pages,
+            "status": self.status
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict):
+        """Create a Book instance from a dictionary (as read from JSON)."""
+        return cls(data["title"], data["author"], data["pages"], data.get("status", "u"))
