@@ -9,7 +9,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from kivy.properties import StringProperty, ListProperty
+from kivy.properties import StringProperty
 from kivy.core.window import Window
 
 from bookcollection import BookCollection
@@ -57,7 +57,7 @@ class BooksApp(App):
 
         return self.root
 
-    def initialize_display(self, dt):
+    def initialize_display(self):
         """Initialize the display after UI is built."""
         self.update_books_display()
 
