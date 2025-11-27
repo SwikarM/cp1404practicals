@@ -1,0 +1,32 @@
+[
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "pages": 180,
+    "status": "r"
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "pages": 328,
+    "status": "r"
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "pages": 281,
+    "status": "u"
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "pages": 432,
+    "status": "u"
+  },
+  {
+    "title": "War and Peace",
+    "author": "Leo Tolstoy",
+    "pages": 1225,
+    "status": "u"
+  }
+]
