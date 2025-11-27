@@ -44,3 +44,10 @@ def test_long_book_detection():
     assert not short_book.is_long()
     assert long_book.is_long()
     print("✓ Long book detection test passed")
+
+    if __name__ == "__main__":
+        test_book_creation()
+        test_book_string_representation()
+        test_book_marking()
+        test_long_book_detection()
+        print("All Book tests passed!")
