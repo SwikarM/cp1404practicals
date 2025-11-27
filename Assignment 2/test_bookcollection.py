@@ -64,7 +64,7 @@ def test_sorting():
     collection.add_book(Book("A Book", "Alice", 100))
     collection.add_book(Book("B Book", "Bob", 200))
 
-    
+
     collection.sort("author")
     authors = [book.author for book in collection.books]
     assert authors == ["Alice", "Bob", "Charlie"]
@@ -76,3 +76,4 @@ if __name__ == "__main__":
     test_page_counts()
     test_save_load_books()
     test_sorting()
+    print("All BookCollection tests passed! ✅")
