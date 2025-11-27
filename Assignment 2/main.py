@@ -32,10 +32,6 @@ class BooksApp(App):
     status_bottom = StringProperty("Welcome to Books To Read 2.0")
     sort_options = ListProperty(['author', 'title', 'pages'])
 
-    def __init__(self, **kwargs):
-        super().__init__(kwargs)
-        self.collection = None
-
     def build(self):
         """Build the app UI and load books."""
         self.collection = BookCollection()

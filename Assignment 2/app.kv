@@ -1,6 +1,4 @@
 #:kivy 2.1.0
-#:import COLOR_UNREAD __main__.COLOR_UNREAD
-#:import COLOR_COMPLETED __main__.COLOR_COMPLETED
 
 <MainWidget>:
     BoxLayout:
@@ -22,7 +20,7 @@
             Spinner:
                 id: sort_spinner
                 text: 'author'
-                values: root.sort_options
+                values:  ['author', 'title', 'pages']
                 size_hint_y: None
                 height: 40
                 on_text: app.on_sort_change()
@@ -38,7 +36,6 @@
                 multiline: False
                 size_hint_y: None
                 height: 40
-                on_text_validate: author_input.focus = True
 
             TextInput:
                 id: author_input
@@ -46,7 +43,6 @@
                 multiline: False
                 size_hint_y: None
                 height: 40
-                on_text_validate: pages_input.focus = True
 
             TextInput:
                 id: pages_input
@@ -55,7 +51,6 @@
                 input_filter: 'int'
                 size_hint_y: None
                 height: 40
-                on_text_validate: app.add_book()
 
             BoxLayout:
                 size_hint_y: None
