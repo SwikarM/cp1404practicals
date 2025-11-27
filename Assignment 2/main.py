@@ -32,16 +32,27 @@ class BooksApp(App):
     status_bottom = StringProperty("Welcome to Books To Read 2.0")
     sort_options = ListProperty(['author', 'title', 'pages'])
 
+    def __init__(self, **kwargs):
+        super().__init__(kwargs)
+        self.collection = None
+
     def build(self):
         """Build the app UI and load books."""
         self.collection = BookCollection()
         self.collection.load_books("books.json")
         self.root = Builder.load_file("app.kv")
-        self.update_books_display()
+
+        # Schedule the initial update after the UI is fully built
+        from kivy.clock import Clock
+        Clock.schedule_once(lambda dt: self.update_books_display(), 0.1)
+
         return self.root
 
     def update_books_display(self):
         """Update the books display area with current books."""
+        if not self.root:
+            return
+
         sort_key = self.root.ids.sort_spinner.text
         self.collection.sort(sort_key)
 
