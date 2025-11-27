@@ -56,3 +56,19 @@ def display_books(collection: BookCollection):
     else:
         print(f"You still have {unread_count} books to read.")
 
+def add_book_interactive(collection: BookCollection):
+    """Prompt user for book fields and add a new unread Book."""
+    title = input("Title: ").strip()
+    while title == "":
+        print("Input cannot be blank")
+        title = input("Title: ").strip()
+
+    author = input("Author: ").strip()
+    while author == "":
+        print("Input cannot be blank")
+        author = input("Author: ").strip()
+
+    pages = get_valid_number("Pages: ")
+
+    collection.add_book(Book(title, author, pages, "u"))
+    print(f"{title} by {author} added to reading list.")
