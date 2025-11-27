@@ -25,31 +25,45 @@ COLOR_LONG_BOOK = [0.9, 0.5, 0.1, 1]  # Orange
 Window.size = (WINDOW_WIDTH, WINDOW_HEIGHT)
 
 
+class MainWidget(BoxLayout):
+    """Main widget class for the app layout."""
+    pass
+
 class BooksApp(App):
     """Main Kivy App for Books To Read 2.0."""
 
     # Kivy properties for data binding
     status_top = StringProperty("Pages to read: 0")
     status_bottom = StringProperty("Welcome to Books To Read 2.0")
-    sort_options = ListProperty(['author', 'title', 'pages'])
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.collection = BookCollection()
 
     def build(self):
         """Build the app UI and load books."""
-        self.collection = BookCollection()
+        # Load books first
         self.collection.load_books("books.json")
-        self.root = Builder.load_file("app.kv")
 
-        # Schedule the initial update after the UI is fully built
+        # Load KV file and create root widget
+        self.root = MainWidget()
+
+        # Update display after a short delay to ensure UI is ready
         from kivy.clock import Clock
-        Clock.schedule_once(lambda dt: self.update_books_display(), 0.1)
+        Clock.schedule_once(self.initialize_display, 0.1)
 
         return self.root
+
+    def initialize_display(self, dt):
+        """Initialize the display after UI is built."""
+        self.update_books_display()
 
     def update_books_display(self):
         """Update the books display area with current books."""
         if not self.root:
             return
 
+        # Get sort key from spinner
         sort_key = self.root.ids.sort_spinner.text
         self.collection.sort(sort_key)
 
