@@ -55,3 +55,24 @@ def test_save_load_books():
         print("✓ Save/load test passed")
     finally:
         os.unlink(temp_filename)
+
+
+def test_sorting():
+    """Test sorting functionality."""
+    collection = BookCollection()
+    collection.add_book(Book("C Book", "Charlie", 300))
+    collection.add_book(Book("A Book", "Alice", 100))
+    collection.add_book(Book("B Book", "Bob", 200))
+
+    
+    collection.sort("author")
+    authors = [book.author for book in collection.books]
+    assert authors == ["Alice", "Bob", "Charlie"]
+    print("✓ Sorting test passed")
+
+
+if __name__ == "__main__":
+    test_collection_basics()
+    test_page_counts()
+    test_save_load_books()
+    test_sorting()
