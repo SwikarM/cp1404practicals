@@ -24,3 +24,23 @@ class BookCollection:
     def unread_pages(self) -> int:
         """Return total pages of unread books."""
         return sum(b.num_pages for b in self.books if b.status == "u")
+
+    def completed_pages(self) -> int:
+        """Return total pages of completed books."""
+        return sum(b.num_pages for b in self.books if b.status == "r")
+
+    def load_books(self, filename: str):
+        """Load books from a JSON file into self.books (creating Book objects)."""
+        path = os.path.join(os.path.dirname(__file__), filename)
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            self.books = [Book.from_dict(item) for item in data]
+        except FileNotFoundError:
+            self.books = []
+
+    def save_books(self, filename: str):
+        """Save current books to JSON file (serialize as list of dicts)."""
+        path = os.path.join(os.path.dirname(__file__), filename)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump([b.to_dict() for b in self.books], f, indent=2)
