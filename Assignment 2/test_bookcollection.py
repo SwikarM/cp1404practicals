@@ -30,3 +30,28 @@ def test_page_counts():
     assert collection.unread_pages() == 250
     assert collection.completed_pages() == 200
     print("✓ Page counts test passed")
+
+
+def test_save_load_books():
+    """Test saving and loading books from JSON file."""
+    collection = BookCollection()
+    collection.add_book(Book("Title1", "Author1", 100, "u"))
+    collection.add_book(Book("Title2", "Author2", 200, "r"))
+
+    # Save to temporary file
+    with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.json') as f:
+        temp_filename = f.name
+
+    try:
+        collection.save_books(temp_filename)
+
+        # Load into new collection
+        new_collection = BookCollection()
+        new_collection.load_books(temp_filename)
+
+        assert len(new_collection.books) == 2
+        assert new_collection.books[0].title == "Title1"
+        assert new_collection.books[1].title == "Title2"
+        print("✓ Save/load test passed")
+    finally:
+        os.unlink(temp_filename
