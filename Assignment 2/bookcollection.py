@@ -60,3 +60,10 @@ class BookCollection:
             self.books.sort(key=lambda b: (b.num_pages, b.title.lower()))
         else:
             self.books.sort(key=lambda b: (b.title.lower(), b.author.lower()))
+
+    def find_by_index_in_sorted(self, index: int, key: str = "author") -> Book:
+        """Return the Book object corresponding to `index` in the sorted list."""
+        self.sort(key)
+        if index < 1 or index > len(self.books):
+            raise IndexError("Book index out of range.")
+        return self.books[index - 1]
