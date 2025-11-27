@@ -18,3 +18,15 @@ def test_collection_basics():
     collection.add_book(book)
     assert len(collection.books) == 1
     print("✓ Collection basics test passed")
+
+
+def test_page_counts():
+    """Test unread and completed page counts."""
+    collection = BookCollection()
+    collection.add_book(Book("Book1", "Author1", 100, "u"))
+    collection.add_book(Book("Book2", "Author2", 200, "r"))
+    collection.add_book(Book("Book3", "Author3", 150, "u"))
+
+    assert collection.unread_pages() == 250
+    assert collection.completed_pages() == 200
+    print("✓ Page counts test passed")
