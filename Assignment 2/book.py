@@ -28,3 +28,5 @@ class Book:
     def mark_unread(self):
         """Mark the book as unread."""
         self.status = "u"
+
+    def is_long(self) -> bool:
