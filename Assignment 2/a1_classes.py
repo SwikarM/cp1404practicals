@@ -72,3 +72,32 @@ def add_book_interactive(collection: BookCollection):
 
     collection.add_book(Book(title, author, pages, "u"))
     print(f"{title} by {author} added to reading list.")
+
+def complete_book_interactive(collection: BookCollection):
+    """Mark one unread book as completed."""
+    unread = [b for b in collection.books if b.status == "u"]
+    if not unread:
+        print("No unread books")
+        return
+
+    display_books(collection)
+
+    choice = get_valid_number("Enter the number of a book to complete: ")
+
+    try:
+        book = collection.find_by_index_in_sorted(choice, key="author")
+    except IndexError:
+        print("Invalid book number")
+        return
+
+    if book.status == "r":
+        print("That book is already completed")
+    else:
+        book.mark_completed()
+        print(f"{book.title} by {book.author} completed!")
+
+
+
+
+if __name__ == "__main__":
+    main()
