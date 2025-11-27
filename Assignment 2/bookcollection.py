@@ -44,3 +44,19 @@ class BookCollection:
         path = os.path.join(os.path.dirname(__file__), filename)
         with open(path, "w", encoding="utf-8") as f:
             json.dump([b.to_dict() for b in self.books], f, indent=2)
+
+    def sort(self, key: str = "author"):
+        """Sort books in-place by the given key, then by title."""
+        if key == "author":
+            def author_key(b: Book):
+                parts = b.author.split()
+                first_name = parts[0] if parts else b.author
+                return (first_name.lower(), b.title.lower())
+
+            self.books.sort(key=author_key)
+        elif key == "title":
+            self.books.sort(key=lambda b: (b.title.lower(), b.author.lower()))
+        elif key == "pages":
+            self.books.sort(key=lambda b: (b.num_pages, b.title.lower()))
+        else:
+            self.books.sort(key=lambda b: (b.title.lower(), b.author.lower()))
