@@ -45,7 +45,10 @@ class BooksApp(App):
         # Load books first
         self.collection.load_books("books.json")
 
-        # Load KV file and create root widget
+        # Load KV file BEFORE creating the widget
+        Builder.load_file("app.kv")
+
+        # Create root widget - this will now use the KV definition
         self.root = MainWidget()
 
         # Update display after a short delay to ensure UI is ready
