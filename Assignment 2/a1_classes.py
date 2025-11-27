@@ -15,6 +15,34 @@ C - Complete a book
 Q - Quit
 """
 
+def main():
+    """Main program for Books To Read 2.0 console version."""
+    print("Books To Read 2.0 - by Swikar Mainali")
+
+    collection = BookCollection()
+    collection.load_books("books.json")
+    print(f"{len(collection.books)} books loaded")
+
+    choice = ""
+    while choice != "Q":
+        choice = input(MENU).strip().upper()
+
+        if choice == "D":
+            display_books(collection)
+        elif choice == "A":
+            add_book_interactive(collection)
+        elif choice == "C":
+            complete_book_interactive(collection)
+        elif choice == "Q":
+            collection.save_books("books.json")
+            print(f"{len(collection.books)} books saved to books.json")
+            print("Goodbye!")
+        else:
+            print("Invalid menu choice")
+
+
+
+
 def get_valid_number(prompt):
     """Return a valid positive integer using a controlled loop ."""
     value = input(prompt)
