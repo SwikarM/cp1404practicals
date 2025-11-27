@@ -7,6 +7,7 @@ Author: Swikar Mainali
 
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.properties import StringProperty, ListProperty
 from kivy.core.window import Window
