@@ -7,87 +7,87 @@
 
     # Left side - Controls and inputs
     BoxLayout:
-          orientation: 'vertical'
-          size_hint_x: 0.4
-          spacing: 10
+        orientation: 'vertical'
+        size_hint_x: 0.4
+        spacing: 10
 
-           Label:
-                text: 'Sort by:'
-                size_hint_y: None
-                height: 30
+        Label:
+            text: 'Sort by:'
+            size_hint_y: None
+            height: 30
 
-           Spinner:
-                id: sort_spinner
-                text: 'author'
-                values:  ['author', 'title', 'pages']
-                size_hint_y: None
-                height: 40
-                on_text: app.on_sort_change()
+        Spinner:
+            id: sort_spinner
+            text: 'author'
+            values: ['author', 'title', 'pages']
+            size_hint_y: None
+            height: 40
+            on_text: app.on_sort_change()
 
-           Label:
-                text: 'Add New Book:'
-                size_hint_y: None
-                height: 30
+        Label:
+            text: 'Add New Book:'
+            size_hint_y: None
+            height: 30
 
-           TextInput:
-                id: title_input
-                hint_text: 'Title'
-                multiline: False
-                size_hint_y: None
-                height: 40
+        TextInput:
+            id: title_input
+            hint_text: 'Title'
+            multiline: False
+            size_hint_y: None
+            height: 40
 
-           TextInput:
-                id: author_input
-                hint_text: 'Author'
-                multiline: False
-                size_hint_y: None
-                height: 40
+        TextInput:
+            id: author_input
+            hint_text: 'Author'
+            multiline: False
+            size_hint_y: None
+            height: 40
 
-           TextInput:
-                id: pages_input
-                hint_text: 'Pages'
-                multiline: False
-                input_filter: 'int'
-                size_hint_y: None
-                height: 40
+        TextInput:
+            id: pages_input
+            hint_text: 'Pages'
+            multiline: False
+            input_filter: 'int'
+            size_hint_y: None
+            height: 40
 
-           BoxLayout:
-                size_hint_y: None
-                height: 50
-                spacing: 5
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 5
 
-                Button:
-                    text: 'Add Book'
-                    on_press: app.add_book()
+            Button:
+                text: 'Add Book'
+                on_press: app.add_book()
 
-                Button:
-                    text: 'Clear'
-                    on_press: app.clear_inputs()
+            Button:
+                text: 'Clear'
+                on_press: app.clear_inputs()
 
     # Right side - Books display
     BoxLayout:
-            orientation: 'vertical'
-            size_hint_x: 0.6
-            spacing: 5
+        orientation: 'vertical'
+        size_hint_x: 0.6
+        spacing: 5
 
-            Label:
-                id: top_status
-                text: app.status_top
+        Label:
+            id: top_status
+            text: app.status_top
+            size_hint_y: None
+            height: 30
+            bold: True
+
+        ScrollView:
+            GridLayout:
+                id: books_grid
+                cols: 1
                 size_hint_y: None
-                height: 30
-                bold: True
+                height: self.minimum_height
+                spacing: 5
 
-            ScrollView:
-                GridLayout:
-                    id: books_grid
-                    cols: 1
-                    size_hint_y: None
-                    height: self.minimum_height
-                    spacing: 5
-
-            Label:
-                id: bottom_status
-                text: app.status_bottom
-                size_hint_y: None
-                height: 30
-                color: 0.8, 0.2, 0.2, 1  # Red color for status messages
+        Label:
+            id: bottom_status
+            text: app.status_bottom
+            size_hint_y: None
+            height: 30
+            color: 0.8, 0.2, 0.2, 1  # Red color for status messages
