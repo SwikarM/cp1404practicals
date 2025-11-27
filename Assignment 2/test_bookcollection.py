@@ -54,4 +54,4 @@ def test_save_load_books():
         assert new_collection.books[1].title == "Title2"
         print("✓ Save/load test passed")
     finally:
-        os.unlink(temp_filename
+        os.unlink(temp_filename)
